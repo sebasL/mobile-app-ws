@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.app.ws.ui.entity;
+package com.appsdeveloperblog.app.ws.io.entity;
 
 import java.io.Serializable;
 
