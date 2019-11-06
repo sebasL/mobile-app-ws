@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
+import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 
 public interface UserService extends UserDetailsService {
 
-	UserDto createUser(UserDto user);
+	UserDTO createUser(UserDTO user);
 
-	UserDto getUser(String email);
+	UserDTO getUser(String email);
 
-	UserDto getUserById(String userId);
+	UserDTO getUserById(String userId);
 
-	UserDto updateUser(String userId, UserDto user);
+	UserDTO updateUser(String userId, UserDTO user);
 
 	void deleteUser(String userId);
 
-	List<UserDto> getUsers(int page, int limit);
+	List<UserDTO> getUsers(int page, int limit);
 }
