@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,8 +122,8 @@ public class UsersController {
 	}
 
 	@GetMapping(path = "/{userId}/addresses", produces = { MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_VALUE })
-	public List<AddressRest> getUserAddresses(@PathVariable String userId) {
+			MediaType.APPLICATION_JSON_VALUE, "application/hal+json" })
+	public Resources<AddressRest> getUserAddresses(@PathVariable String userId) {
 
 		List<AddressDTO> addresses = addressService.getAddresses(userId);
 
@@ -142,12 +144,12 @@ public class UsersController {
 
 		}
 
-		return returnValue;
+		return new Resources<>(returnValue);
 	}
 
 	@GetMapping(path = "/{userId}/addresses/{addressId}", produces = { MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_VALUE })
-	public AddressRest getUserAddress(@PathVariable String userId, @PathVariable String addressId) {
+			MediaType.APPLICATION_JSON_VALUE, "application/hal+json" })
+	public Resource<AddressRest> getUserAddress(@PathVariable String userId, @PathVariable String addressId) {
 
 		AddressDTO addressDto = addressService.getAddressById(addressId);
 
@@ -165,7 +167,7 @@ public class UsersController {
 		returnValue.add(addressLink);
 		returnValue.add(addressesLink);
 
-		return returnValue;
+		return new Resource<>(returnValue);
 	}
 
 }
